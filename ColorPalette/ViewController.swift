@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         palette.layer.cornerRadius = palette.frame.width / 20
         mixColors()
+        
         setup(redSlider, withColor: .red)
         setup(greenSlider, withColor: .green)
         setup(blueSlider, withColor: .blue)
@@ -39,15 +40,19 @@ class ViewController: UIViewController {
         mixColors()
         switch slider.tag {
         case 1:
-            redLabel.text = String(format: "%.2f", redSlider.value)
+            getStringFor(redLabel,from: redSlider)
             setup(redSlider, withColor: .red)
         case 2:
-            greenLabel.text = String(format: "%.2f", greenSlider.value)
+            getStringFor(greenLabel, from: greenSlider)
             setup(greenSlider, withColor: .green)
         default:
-            blueLabel.text = String(format: "%.2f", blueSlider.value)
+            getStringFor(blueLabel, from: blueSlider)
             setup(blueSlider, withColor: .blue)
         }
+    }
+    
+    private func getStringFor(_ label:UILabel,from slider: UISlider) {
+        label.text = String(format: "%.2f", slider.value)
     }
     
     private func mixColors() {
